@@ -3,8 +3,8 @@
 
 # Will be sent on the last commit
 /AnimationProgramming/Release/*
+/Release/*
 /Data/*
 !/Data/Resources/
 /Data/Resources/*
-!/Data/Resources/skinning.vs # Skinning vertex shader
-/Release/*
+!/Data/Resources/skinning.vs
