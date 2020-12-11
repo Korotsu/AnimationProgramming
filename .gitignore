@@ -1,10 +1,10 @@
 # Visual Studio
-.vs
+/.vs
 
 # Will be sent on the last commit
-AnimationProgramming/Release
-Data
-Release
-
-# Skinning vertex shader
-!Data/Resources/skinning.vs
+/AnimationProgramming/Release/*
+/Data/*
+!/Data/Resources/
+/Data/Resources/*
+!/Data/Resources/skinning.vs # Skinning vertex shader
+/Release/*
