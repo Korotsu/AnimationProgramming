@@ -13,22 +13,64 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{9208a91b-9ca6-40f1-bbf6-a26b8b451e9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{93951ea2-65fd-446e-8b3b-0d4381894398}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="Math\src\Matrix3.inl">
+      <Filter>Source Files\Math</Filter>
+    </Text>
+    <Text Include="Math\src\Matrix4.inl">
+      <Filter>Source Files\Math</Filter>
+    </Text>
+    <Text Include="Math\src\trigonometry.inl">
+      <Filter>Source Files\Math</Filter>
+    </Text>
+    <Text Include="Math\src\Quaternion.inl">
+      <Filter>Source Files\Math</Filter>
+    </Text>
+    <Text Include="Math\src\Vector2.inl">
+      <Filter>Source Files\Math</Filter>
+    </Text>
+    <Text Include="Math\src\Vector3.inl">
+      <Filter>Source Files\Math</Filter>
+    </Text>
+    <Text Include="Math\src\Vector4.inl">
+      <Filter>Source Files\Math</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Simulation.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Math\include\Matrix4.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\include\trigonometry.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\include\types.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\include\Vector2.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\include\Vector3.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\include\Vector4.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\include\Quaternion.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\include\Matrix3.h">
+      <Filter>Header Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="AnimationProgramming.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\src\Quaternion.cpp">
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

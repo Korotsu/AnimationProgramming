@@ -122,7 +122,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\GitHub\WhiteBoxEngine - Copie\Core\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Math/include;Math/src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,13 +156,42 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
-    <ClInclude Include="Simulation.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Math\include\Matrix3.h" />
+    <ClInclude Include="Math\include\Matrix4.h" />
+    <ClInclude Include="Math\include\Quaternion.h" />
+    <ClInclude Include="Math\include\trigonometry.h" />
+    <ClInclude Include="Math\include\types.h" />
+    <ClInclude Include="Math\include\Vector2.h" />
+    <ClInclude Include="Math\include\Vector3.h" />
+    <ClInclude Include="Math\include\Vector4.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationProgramming.cpp" />
+    <ClCompile Include="Math\src\Quaternion.cpp" />
     <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Math\src\Matrix3.inl">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="Math\src\Matrix4.inl">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="Math\src\Quaternion.inl">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="Math\src\trigonometry.inl">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="Math\src\Vector2.inl">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="Math\src\Vector3.inl">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="Math\src\Vector4.inl">
+      <FileType>Document</FileType>
+    </Text>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
