@@ -3,16 +3,16 @@
 #include "Engine.h"
 #include "Simulation.h"
 
-class CSimulation : public ISimulation
+class CSimulation final : public ISimulation
 {
-	virtual void Init() override
+	virtual void Init() final
 	{
 		int spine01 =	GetSkeletonBoneIndex("spine_01");
 		int spineParent = GetSkeletonBoneParentIndex(spine01);
 		const char* spineParentName = GetSkeletonBoneName(spineParent);
 
 		float posX, posY, posZ, quatW, quatX, quatY, quatZ;
-		size_t keyCount = GetAnimKeyCount("ThirdPersonWalk.anim");
+		const size_t keyCount = GetAnimKeyCount("ThirdPersonWalk.anim");
 		GetAnimLocalBoneTransform("ThirdPersonWalk.anim", spineParent, keyCount / 2, posX, posY, posZ, quatW, quatX, quatY, quatZ);
 		
 		printf("Spine parent bone : %s\n", spineParentName);
@@ -20,7 +20,7 @@ class CSimulation : public ISimulation
 		printf("Anim key : pos(%.2f,%.2f,%.2f) rotation quat(%.10f,%.10f,%.10f,%.10f)\n", posX, posY, posZ, quatW, quatX, quatY, quatZ);
 	}
 
-	virtual void Update(float frameTime) override
+	virtual void Update(float frameTime) final
 	{
 		// X axis
 		DrawLine(0, 0, 0, 100, 0, 0, 1, 0, 0);
