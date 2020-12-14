@@ -22,27 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-    <Text Include="Math\src\Matrix3.inl">
-      <Filter>Source Files\Math</Filter>
-    </Text>
-    <Text Include="Math\src\Matrix4.inl">
-      <Filter>Source Files\Math</Filter>
-    </Text>
-    <Text Include="Math\src\trigonometry.inl">
-      <Filter>Source Files\Math</Filter>
-    </Text>
-    <Text Include="Math\src\Quaternion.inl">
-      <Filter>Source Files\Math</Filter>
-    </Text>
-    <Text Include="Math\src\Vector2.inl">
-      <Filter>Source Files\Math</Filter>
-    </Text>
-    <Text Include="Math\src\Vector3.inl">
-      <Filter>Source Files\Math</Filter>
-    </Text>
-    <Text Include="Math\src\Vector4.inl">
-      <Filter>Source Files\Math</Filter>
-    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -71,6 +50,27 @@
     </ClInclude>
     <ClInclude Include="Math\include\Matrix3.h">
       <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\src\Matrix3.inl">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\src\Matrix4.inl">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\src\trigonometry.inl">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\src\Quaternion.inl">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\src\Vector2.inl">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\src\Vector3.inl">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\src\Vector4.inl">
+      <Filter>Source Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

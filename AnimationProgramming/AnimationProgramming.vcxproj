@@ -171,27 +171,27 @@
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Math\src\Matrix3.inl">
+    <ClInclude Include="Math\src\Matrix3.inl">
       <FileType>Document</FileType>
-    </Text>
-    <Text Include="Math\src\Matrix4.inl">
+    </ClInclude>
+    <ClInclude Include="Math\src\Matrix4.inl">
       <FileType>Document</FileType>
-    </Text>
-    <Text Include="Math\src\Quaternion.inl">
+    </ClInclude>
+    <ClInclude Include="Math\src\Quaternion.inl">
       <FileType>Document</FileType>
-    </Text>
-    <Text Include="Math\src\trigonometry.inl">
+    </ClInclude>
+    <ClInclude Include="Math\src\trigonometry.inl">
       <FileType>Document</FileType>
-    </Text>
-    <Text Include="Math\src\Vector2.inl">
+    </ClInclude>
+    <ClInclude Include="Math\src\Vector2.inl">
       <FileType>Document</FileType>
-    </Text>
-    <Text Include="Math\src\Vector3.inl">
+    </ClInclude>
+    <ClInclude Include="Math\src\Vector3.inl">
       <FileType>Document</FileType>
-    </Text>
-    <Text Include="Math\src\Vector4.inl">
+    </ClInclude>
+    <ClInclude Include="Math\src\Vector4.inl">
       <FileType>Document</FileType>
-    </Text>
+    </ClInclude>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
