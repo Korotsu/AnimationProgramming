@@ -11,7 +11,7 @@ inline constexpr Matrix4 Matrix4::zero() noexcept
 }
 
 
-inline constexpr Matrix4 Matrix::identity() noexcept
+inline constexpr Matrix4 Matrix4::identity() noexcept
 {
     return
     {
@@ -26,7 +26,7 @@ inline constexpr Matrix4 Matrix::identity() noexcept
 
 
 /* =================== Methods =================== */
-inline constexpr Matrix4 Matrix4::cofactor() const noexcept
+inline Matrix4 Matrix4::cofactor() const noexcept
 {
     // Repeated values
     const f32 a11{coef[0]}, a12{coef[4]}, a13{coef[8]},  a14{coef[12]},
@@ -128,9 +128,13 @@ inline constexpr f32 Matrix4::det() const noexcept
 }
 
 
-inline constexpr Matrix4 Matrix4::inversed() const noexcept
+inline Matrix4 Matrix4::inversed() const noexcept
 { return adjugate() / det(); }
 
+
+
+inline constexpr f32 Matrix4::trace() const noexcept
+{ return coef[0] + coef[5] + coef[10] + coef[15]; }
 
 
 
@@ -145,30 +149,30 @@ inline constexpr Matrix4& Matrix4::operator*=(const Matrix4& m) noexcept
 
     f32 ma1{*m.coef}, ma2{m.coef[4]}, ma3{m.coef[8]}, ma4{m.coef[12]};
 
-    *coef   = (a11  * ma1) + (a12  * ma2) + (a13  * ma3) + (a14  * ma4);
-    coef[1] = (a21  * ma1) + (a22  * ma2) + (a23  * ma3) + (a24  * ma4);
-    coef[2] = (a31  * ma1) + (a32 * ma2) + (a33 * ma3) + (a34 * ma4);
+    *coef   = (a11 * ma1) + (a12 * ma2) + (a13 * ma3) + (a14 * ma4);
+    coef[1] = (a21 * ma1) + (a22 * ma2) + (a23 * ma3) + (a24 * ma4);
+    coef[2] = (a31 * ma1) + (a32 * ma2) + (a33 * ma3) + (a34 * ma4);
     coef[3] = (a41 * ma1) + (a42 * ma2) + (a43 * ma3) + (a44 * ma4);
 
     ma1 = m.coef[1]; ma2 = m.coef[5]; ma3 = m.coef[9]; ma4 = m.coef[13];
 
-    coef[4] = (a11  * ma1) + (a12  * ma2) + (a13  * ma3) + (a14  * ma4);
-    coef[5] = (a21  * ma1) + (a22  * ma2) + (a23  * ma3) + (a24  * ma4);
-    coef[6] = (a31  * ma1) + (a32 * ma2) + (a33 * ma3) + (a34 * ma4);
+    coef[4] = (a11 * ma1) + (a12 * ma2) + (a13 * ma3) + (a14 * ma4);
+    coef[5] = (a21 * ma1) + (a22 * ma2) + (a23 * ma3) + (a24 * ma4);
+    coef[6] = (a31 * ma1) + (a32 * ma2) + (a33 * ma3) + (a34 * ma4);
     coef[7] = (a41 * ma1) + (a42 * ma2) + (a43 * ma3) + (a44 * ma4);
 
     ma1 = m.coef[2]; ma2 = m.coef[6]; ma3 = m.coef[10]; ma4 = m.coef[14];
 
-    coef[8]  = (a11  * ma1) + (a12  * ma2) + (a13  * ma3) + (a14  * ma4);
-    coef[9]  = (a21  * ma1) + (a22  * ma2) + (a23  * ma3) + (a24  * ma4);
-    coef[10] = (a31  * ma1) + (a32 * ma2) + (a33 * ma3) + (a34 * ma4);
+    coef[8]  = (a11 * ma1) + (a12 * ma2) + (a13 * ma3) + (a14 * ma4);
+    coef[9]  = (a21 * ma1) + (a22 * ma2) + (a23 * ma3) + (a24 * ma4);
+    coef[10] = (a31 * ma1) + (a32 * ma2) + (a33 * ma3) + (a34 * ma4);
     coef[11] = (a41 * ma1) + (a42 * ma2) + (a43 * ma3) + (a44 * ma4);
 
     ma1 = m.coef[3]; ma2 = m.coef[7]; ma3 = m.coef[11]; ma4 = m.coef[15];
 
-    coef[12] = (a11  * ma1) + (a12  * ma2) + (a13  * ma3) + (a14  * ma4);
-    coef[13] = (a21  * ma1) + (a22  * ma2) + (a23  * ma3) + (a24  * ma4);
-    coef[14] = (a31  * ma1) + (a32 * ma2) + (a33 * ma3) + (a34 * ma4);
+    coef[12] = (a11 * ma1) + (a12 * ma2) + (a13 * ma3) + (a14 * ma4);
+    coef[13] = (a21 * ma1) + (a22 * ma2) + (a23 * ma3) + (a24 * ma4);
+    coef[14] = (a31 * ma1) + (a32 * ma2) + (a33 * ma3) + (a34 * ma4);
     coef[15] = (a41 * ma1) + (a42 * ma2) + (a43 * ma3) + (a44 * ma4);
 
     return *this;
@@ -201,7 +205,7 @@ inline constexpr Vec4 Matrix4::operator*(const Vec4& v) const noexcept
 
 
 // Quite often, m is a static-built temporary matrix
-inline constexpr Matrix4 Matrix4::operator*(const Matrix4& m) const noexcept
+inline Matrix4 Matrix4::operator*(const Matrix4& m) const noexcept
 {
     Matrix4 res;
 
@@ -250,7 +254,7 @@ inline constexpr Matrix4 Matrix4::operator*(const Matrix4& m) const noexcept
 }
 
  
-inline constexpr Matrix4 Matrix4::operator/(const f32 k) const noexcept
+inline Matrix4 Matrix4::operator/(const f32 k) const noexcept
 {
     const f32   reciprocal{1.f / k};
     Matrix4     res;

@@ -10,7 +10,7 @@ inline constexpr Matrix3 Matrix3::zero() noexcept
 }
 
 
-inline constexpr Matrix3 Matrix::identity() noexcept
+inline constexpr Matrix3 Matrix3::identity() noexcept
 {
     return
     {
@@ -68,9 +68,13 @@ inline constexpr f32 Matrix3::det() const noexcept
 }
 
 
-inline constexpr Matrix3 Matrix3::inversed() const noexcept
+inline Matrix3 Matrix3::inversed() const noexcept
 { return adjugate() / det(); }
 
+
+
+inline constexpr f32 Matrix3::trace() const noexcept
+{ return coef[0] + coef[4] + coef[8]; }
 
 
 
@@ -116,19 +120,18 @@ inline constexpr Matrix3& Matrix3::operator/=(const f32 k) noexcept
 }
 
 
-inline constexpr Vec4 Matrix3::operator*(const Vec3& v) const noexcept
+inline constexpr Vec3 Matrix3::operator*(const Vec3& v) const noexcept
 {
     return
     {
         (coef[0] * v.x) + (coef[3] * v.y) + (coef[6] * v.z),
         (coef[1] * v.x) + (coef[4] * v.y) + (coef[7] * v.z),
-        (coef[2] * v.x) + (coef[5] * v.y) + (coef[8] * v.z);
+        (coef[2] * v.x) + (coef[5] * v.y) + (coef[8] * v.z)
     };
 }
 
 
-// Quite often, m is a static-built temporary matrix
-inline constexpr Matrix3 Matrix3::operator*(const Matrix3& m) const noexcept
+inline Matrix3 Matrix3::operator*(const Matrix3& m) const noexcept
 {
     Matrix3 res;
 
@@ -159,7 +162,7 @@ inline constexpr Matrix3 Matrix3::operator*(const Matrix3& m) const noexcept
 }
 
  
-inline constexpr Matrix3 Matrix3::operator/(const f32 k) const noexcept
+inline Matrix3 Matrix3::operator/(const f32 k) const noexcept
 {
     const f32   reciprocal{1.f / k};
     Matrix3     res;

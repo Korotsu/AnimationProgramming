@@ -10,7 +10,7 @@ inline constexpr Quaternion Quaternion::identity() noexcept
 inline Quaternion::Quaternion(const f32 angle, const Vec3& axis) noexcept
     : v{axis.normalized()}, s{angle}
 {
-    s   = fmodf(s, 2.f * M_PI) * .5f;
+    s   = fmodf(s, 2.f * PI) * .5f;
     v   *= sinf(s);
     s   = cosf(s);
 }
@@ -126,12 +126,12 @@ inline constexpr Quaternion Quaternion::operator/(const f32 k) const noexcept
 }
 
 
-inline constexpr f32 Quaternion::operator[](const u8 k) const noexcept
-{ return *((f32*)this + k); }
+inline constexpr f32 Quaternion::operator[](const u8 i) const noexcept
+{ return *((f32*)this + i); }
 
 
-inline constexpr f32& Quaternion::operator[](const u8 k) noexcept
-{ return *((f32*)this + k); }
+inline constexpr f32& Quaternion::operator[](const u8 i) noexcept
+{ return *((f32*)this + i); }
 
 
 #ifdef DEBUG

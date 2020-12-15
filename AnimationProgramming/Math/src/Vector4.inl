@@ -25,7 +25,7 @@ inline constexpr Vector4 Vector4::operator*(const f32 k) const noexcept
 { return {xyz * k, w * k}; }
 
 
-inline constexpr Vector4::operator/(const f32 k) const noexcept
+inline constexpr Vector4 Vector4::operator/(const f32 k) const noexcept
 {
     const f32 reciprocal{1.f / k};
     return {xyz * reciprocal, w * reciprocal};

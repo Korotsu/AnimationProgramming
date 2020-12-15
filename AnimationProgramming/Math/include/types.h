@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-namespace BE
+namespace Math
 {
 
 using u8    = std::uint8_t;
@@ -25,6 +25,6 @@ union f32u
     int bits;
 };
 
-} // End of namespace BE
+} // End of namespace Math
 
 #endif

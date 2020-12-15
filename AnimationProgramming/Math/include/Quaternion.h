@@ -1,9 +1,9 @@
 #ifndef QUATERNION_H
 #define QUATERNION_H
 
-#include <math.h> // M_PI is needed
-#include "Vector3.h"
+#include "constants.h"
 #include "types.h"
+#include "Vector3.h"
 
 #ifdef DEBUG
 #include <iostream>
@@ -25,8 +25,10 @@ struct Quaternion
     Quaternion(const Matrix3& m) noexcept;
     constexpr Quaternion(const Vec3& v = {}, const f32 s = .0f) noexcept;
 
+    // Static method
     static constexpr Quaternion identity    ()                                      noexcept;
 
+    // Methods
     constexpr f32               length2     ()                                      const noexcept;
     f32                         length      ()                                      const noexcept;
     constexpr f32               dot         (const Quaternion& q)                   const noexcept;
@@ -50,8 +52,8 @@ struct Quaternion
     constexpr Vec3              operator*   (const Vec3& v)                         const noexcept;
     constexpr Quaternion        operator*   (const f32 k)                           const noexcept;
     constexpr Quaternion        operator/   (const f32 k)                           const noexcept;
-    constexpr f32               operator[]  (const u8 k)                            const noexcept;
-    constexpr f32&              operator[]  (const u8 k)                            noexcept;
+    constexpr f32               operator[]  (const u8 i)                            const noexcept;
+    constexpr f32&              operator[]  (const u8 i)                            noexcept;
 
     #ifdef DEBUG
     friend std::ostream& operator<<(std::ostream& os, const Quaternion& q) noexcept;

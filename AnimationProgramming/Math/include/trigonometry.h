@@ -2,6 +2,7 @@
 #define TRIGONOMETRY_H
 
 #include <cmath>
+#include "constants.h"
 #include "types.h"
 
 namespace Math
