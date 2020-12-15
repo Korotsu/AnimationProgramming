@@ -13,5 +13,3 @@ struct Bone
 };
 
 #endif
-
-// Du coup j'envois ça sur le git
