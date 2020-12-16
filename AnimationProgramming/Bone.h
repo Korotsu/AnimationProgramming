@@ -14,6 +14,7 @@ struct Bone
     unsigned char   parent; // index of the parent, in the bone array of the Skeleton
 
     Bone(int index, Skeleton& skeleton);
+    Bone();
 };
 
 #endif
