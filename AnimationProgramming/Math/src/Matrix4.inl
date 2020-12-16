@@ -279,7 +279,7 @@ inline constexpr f32 Matrix4::operator()(const u8 i, const u8 j) const noexcept
 { return coef[j * MAT4_COL + i]; }
 
 
-#ifdef DEBUG
+//#ifdef DEBUG
 inline std::ostream& operator<<(std::ostream& os, const Matrix4& mat) noexcept
 {
     std::streamsize original = std::cout.precision();
@@ -300,4 +300,4 @@ inline std::ostream& operator<<(std::ostream& os, const Matrix4& mat) noexcept
 
     return os;
 }
-#endif
+//#endif

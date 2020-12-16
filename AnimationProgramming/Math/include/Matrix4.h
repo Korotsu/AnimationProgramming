@@ -5,9 +5,10 @@
 #include "types.h"
 #include "Vector4.h"
 
-#ifdef DEBUG
+//#ifdef DEBUG
 #include <iomanip>
-#endif
+#include <iostream>
+//#endif
 
 namespace Math
 {
@@ -41,9 +42,9 @@ struct Matrix4
     constexpr f32       operator[]      (const u8 i)        const noexcept;
     constexpr f32       operator()      (const u8 i, const u8 j) const noexcept;
 
-    #ifdef DEBUG
+    //#ifdef DEBUG
     friend std::ostream& operator<<(std::ostream& os, const Matrix4& m) noexcept;
-    #endif
+    //#endif
 };
 
 using Mat4 = Matrix4;

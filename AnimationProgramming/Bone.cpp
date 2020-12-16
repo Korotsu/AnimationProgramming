@@ -11,7 +11,13 @@ Bone::Bone(int index, Skeleton& skeleton)
     {
         // Genre invBindPose = inv(pose x skeleton.bone[parent].invBindPos)
 
-        invBindPos = (pose.toMatrix() * skeleton.boneList[parent].invBindPos).inversed();
+        //invBindPos = pose.toMatrix().inversed() * skeleton.boneList[parent].invBindPos;
+        //invBindPos = (skeleton.boneList[parent].invBindPos.inversed() * pose.toMatrix()).inversed();
+
+        //invBindPos = (pose.toMatrix().inversed() * skeleton.boneList[parent].invBindPos).inversed();
+        //std::cout << "Matrix inv inv xd = " << invBindPos << std::endl;
+
+        invBindPos = (pose.toMatrix() * skeleton.boneList[parent].invBindPos.inversed()).inversed();
     }
 
     else
