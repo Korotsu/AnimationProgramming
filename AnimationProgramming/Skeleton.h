@@ -5,10 +5,14 @@ struct Bone;
 
 struct Skeleton
 {
-    Bone* bone;
+    Bone* boneList;
 
     Skeleton(size_t size);
     ~Skeleton();
+
+    void Draw();
+
+    static Skeleton mainSkeleton;
 };
 
 
