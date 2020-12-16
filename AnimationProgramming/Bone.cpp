@@ -11,7 +11,7 @@ Bone::Bone(int index, Skeleton& skeleton)
     {
         // Genre invBindPose = inv(pose x skeleton.bone[parent].invBindPos)
 
-        invBindPos = (pose.toMatrix() * skeleton.bone[parent].invBindPos).inversed();
+        invBindPos = (pose.toMatrix() * skeleton.boneList[parent].invBindPos).inversed();
     }
 
     else
@@ -22,7 +22,3 @@ Bone::Bone(int index, Skeleton& skeleton)
     //  |- Bone -| |-------------- Pos ---------------|  |----------------------- Quat -----------------------|
     // (int index, float& posX, float& posY, float& posZ, float& quatW, float& quatX, float& quatY, float& quatZ)
 }
-
-
-Bone::Bone()
-{}

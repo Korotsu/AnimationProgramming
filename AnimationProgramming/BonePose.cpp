@@ -1,12 +1,20 @@
 #include "BonePose.h"
+#include "conversion.h"
+
 
 Math::Matrix4 BonePose::toMatrix() const noexcept
 {
-    Math::Matrix4 ret;
+    Math::Matrix4 ret{scale.x, .0f, .0f, .0f,
+                      .0f, scale.y, .0f, .0f,
+                      .0f, .0f, scale.z, .0f,
+                      .0f, .0f, .0f, 1.f};
 
-    ret.coef[0]     = scale.x;
-    ret.coef[5]     = scale.y;
-    ret.coef[10]    = scale.z;
+    ret *= Math::toMatrix4(rot);
 
-    ret *= rot; // Je retrouve pas ma méthode de conversion en matrice :' )
+    ret *= {1.f, .0f, .0f, trans.x,
+            0.f, 1.f, .0f, trans.y,
+            0.f, .0f, 1.f, trans.z,
+            0.f, .0f, .0f, 1.f};
+
+    return ret;
 }
