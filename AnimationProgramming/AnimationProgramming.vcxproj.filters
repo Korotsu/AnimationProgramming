@@ -25,6 +25,9 @@
     <Filter Include="Header Files\Animation">
       <UniqueIdentifier>{24c993ac-409f-4474-81ff-9bc226f90cb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Shader">
+      <UniqueIdentifier>{6b2fc0c0-5d87-4139-bd67-bae2af039ad9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -66,6 +69,9 @@
     <ClInclude Include="BonePose.h">
       <Filter>Header Files\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="Skeleton.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -75,6 +81,15 @@
       <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="AnimationProgramming.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bone.cpp">
+      <Filter>Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Skeleton.cpp">
+      <Filter>Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="BonePose.cpp">
       <Filter>Source Files\Animation</Filter>
     </ClCompile>
   </ItemGroup>
@@ -99,6 +114,9 @@
     </None>
     <None Include="Math\src\Matrix3.inl">
       <Filter>Source Files\Math</Filter>
+    </None>
+    <None Include="..\Release\Resources\skinning.vs">
+      <Filter>Source Files\Shader</Filter>
     </None>
   </ItemGroup>
 </Project>

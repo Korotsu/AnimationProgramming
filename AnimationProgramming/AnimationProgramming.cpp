@@ -5,8 +5,6 @@
 
 class CSimulation final : public ISimulation
 {
-
-
 	virtual void Init() final
 	{
 		const size_t boneCount		= GetSkeletonBoneCount();

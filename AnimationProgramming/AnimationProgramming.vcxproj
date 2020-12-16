@@ -167,13 +167,18 @@
     <ClInclude Include="Math\include\Vector2.h" />
     <ClInclude Include="Math\include\Vector3.h" />
     <ClInclude Include="Math\include\Vector4.h" />
+    <ClInclude Include="Skeleton.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationProgramming.cpp" />
+    <ClCompile Include="Bone.cpp" />
+    <ClCompile Include="BonePose.cpp" />
     <ClCompile Include="Math\src\Quaternion.cpp" />
+    <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Release\Resources\skinning.vs" />
     <None Include="Math\src\Matrix3.inl">
       <FileType>Document</FileType>
     </None>
