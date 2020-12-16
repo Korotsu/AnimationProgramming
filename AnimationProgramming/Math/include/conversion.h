@@ -10,9 +10,10 @@ namespace Math
 {
 
 Matrix4 toMatrix4(const Quaternion& q) noexcept;
-Matrix4 toMatrix3(const Quaternion& m) noexcept;
+Matrix3 toMatrix3(const Quaternion& q) noexcept;
+
+#include "conversion.inl"
 
 } // End of namespace Math
-
 
 #endif
