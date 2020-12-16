@@ -6,6 +6,10 @@
 
 class CSimulation final : public ISimulation
 {
+private:
+	Skeleton mainSkeleton;
+
+private:
 	virtual void Init() final
 	{
 		/*const size_t boneCount		= GetSkeletonBoneCount();
@@ -27,7 +31,7 @@ class CSimulation final : public ISimulation
 		printf("Anim key count : %ld\n", keyCount);
 		printf("Anim key : pos(%.2f,%.2f,%.2f) rotation quat(%.10f,%.10f,%.10f,%.10f)\n", posX, posY, posZ, quatW, quatX, quatY, quatZ);*/
 
-		Skeleton::mainSkeleton = Skeleton(GetSkeletonBoneCount());
+		mainSkeleton = Skeleton(GetSkeletonBoneCount());
 	}
 
 	virtual void Update(float frameTime) final
@@ -41,7 +45,7 @@ class CSimulation final : public ISimulation
 		// Z axis
 		DrawLine(0, 0, 0, 0, 0, 100, 0, 0, 1);*/
 
-		Skeleton::mainSkeleton.Draw();
+		mainSkeleton.Draw();
 	}
 };
 

@@ -15,7 +15,7 @@ Skeleton::~Skeleton()
 	delete[] boneList;
 }
 
-void Skeleton::Draw()
+void Skeleton::Draw() const
 {
 	for (size_t i = 1; i < GetSkeletonBoneCount(); i++)
 	{

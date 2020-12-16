@@ -10,9 +10,7 @@ struct Skeleton
     Skeleton(size_t size);
     ~Skeleton();
 
-    void Draw();
-
-    static Skeleton mainSkeleton;
+    void Draw() const;
 };
 
 
