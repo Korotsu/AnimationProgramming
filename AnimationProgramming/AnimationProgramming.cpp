@@ -9,6 +9,7 @@ class CSimulation final : public ISimulation
 	{
 		int spine01 =	GetSkeletonBoneIndex("spine_01");
 		int spineParent = GetSkeletonBoneParentIndex(spine01);
+
 		const char* spineParentName = GetSkeletonBoneName(spineParent);
 
 		float posX, posY, posZ, quatW, quatX, quatY, quatZ;

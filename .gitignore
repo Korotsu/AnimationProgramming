@@ -8,4 +8,5 @@
 !/Data/Resources/
 /Data/Resources/*
 !/Data/Resources/skinning.vs
-/Debug/*
+/AnimationProgramming/Debug/*
+/AnimationProgramming/x64/Debug/*
