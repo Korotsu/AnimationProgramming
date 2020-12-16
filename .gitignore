@@ -8,3 +8,4 @@
 !/Data/Resources/
 /Data/Resources/*
 !/Data/Resources/skinning.vs
+/Debug/*
