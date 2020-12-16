@@ -159,6 +159,7 @@
     <ClInclude Include="BonePose.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Math\include\constants.h" />
+    <ClInclude Include="Math\include\conversion.h" />
     <ClInclude Include="Math\include\Matrix3.h" />
     <ClInclude Include="Math\include\Matrix4.h" />
     <ClInclude Include="Math\include\Quaternion.h" />
@@ -179,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Release\Resources\skinning.vs" />
+    <None Include="Math\src\conversion.inl" />
     <None Include="Math\src\Matrix3.inl">
       <FileType>Document</FileType>
     </None>

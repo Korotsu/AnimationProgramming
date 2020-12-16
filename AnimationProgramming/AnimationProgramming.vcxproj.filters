@@ -72,6 +72,9 @@
     <ClInclude Include="Skeleton.h">
       <Filter>Header Files\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="Math\include\conversion.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -117,6 +120,9 @@
     </None>
     <None Include="..\Release\Resources\skinning.vs">
       <Filter>Source Files\Shader</Filter>
+    </None>
+    <None Include="Math\src\conversion.inl">
+      <Filter>Source Files\Math</Filter>
     </None>
   </ItemGroup>
 </Project>
