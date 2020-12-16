@@ -1,8 +1,9 @@
 #ifndef MATRIX4_H
 #define MATRIX4_H
 
-#include "Vector4.h"
+#include "Quaternion.h"
 #include "types.h"
+#include "Vector4.h"
 
 #ifdef DEBUG
 #include <iomanip>
