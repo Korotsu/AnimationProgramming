@@ -22,3 +22,10 @@ Bone::Bone(int index, Skeleton& skeleton)
         invBindPose = globalPose.inversed();
     }
 }
+
+void Bone::Move(Math::vec3 translation, const Skeleton& skeleton)
+{
+    localPose.trans += translation;
+    globalPose = skeleton.boneList[parentIndex].globalPose * localPose.toMatrix4();
+    invBindPose = globalPose.inversed();
+}

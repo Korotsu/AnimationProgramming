@@ -41,6 +41,8 @@ void Skeleton::init()
 
 void Skeleton::Draw() const
 {
+
+	//boneList[1].Move(Math::vec3{0,-0.00001,}, *this); //Move fuction call;
 	// The last 7 bones are IK
 	const size_t boneCount{size - 7u};
 

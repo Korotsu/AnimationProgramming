@@ -17,6 +17,7 @@ struct Bone
     Bone() = default;
     Bone(Bone&& other) = default;
     Bone(int index, Skeleton& skeleton);
+    void Move(Math::vec3 position, const Skeleton& skeleton);
 
     Bone& operator=(Bone&& other) = default;
 };
