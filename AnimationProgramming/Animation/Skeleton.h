@@ -3,12 +3,16 @@
 
 struct Bone;
 namespace Math
-{ struct Vector3; }
+{
+    struct Vector3;
+    struct Matrix4;
+}
 
 struct Skeleton
 {
-    size_t  size    {0u};
-    Bone*   boneList{nullptr};
+    size_t          size    {0u};
+    Bone*           boneList{nullptr};
+    Math::Matrix4*  palette {nullptr};
 
     Skeleton() = default;
     ~Skeleton();
@@ -18,6 +22,8 @@ struct Skeleton
     void MoveBone(int boneIndex, const Math::Vector3& translation) noexcept;
 
     void Draw() const;
+
+    void GatherMatrixPalette() noexcept;
 
     Skeleton& operator=(Skeleton&&) = default;
 };

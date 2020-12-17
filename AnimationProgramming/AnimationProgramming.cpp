@@ -21,7 +21,7 @@ class CSimulation final : public ISimulation
 		virtual void Init() final
 		{
 			mainSkeleton.Init();
-			mainSkeleton.MoveBone(1, { 0, -100, 0 });
+			mainSkeleton.MoveBone(1, {.0f, 5.f, .0f});
 
 			//mainSkeleton.boneList[10].Move({.0f, -10.f, .0f}, mainSkeleton);
 
@@ -61,60 +61,13 @@ class CSimulation final : public ISimulation
 			mainSkeleton.Draw();
 
 			// Move the fingers
-			/*const float cosTime{.1f * cosf(clock() * 0.001f)};
-			const float cosTime2{ .1f * cosf(clock() * 0.001f) };
-			const float sinTime{.1f * sin(clock() * 0.001f)};
-			mainSkeleton.MoveBone(1, { 1- cosTime, 0., cosTime2 });*/
-			//mainSkeleton.MoveBone(11, {cosTime, sinTime, .0f});
-			//mainSkeleton.MoveBone(12, {cosTime, sinTime, .0f});
-			//mainSkeleton.MoveBone(13, {cosTime, sinTime, .0f});
-			//mainSkeleton.MoveBone(14, {cosTime, sinTime, .0f});
+			const float cosTime{.25f * cosf(clock() * 0.01f)};
+			mainSkeleton.MoveBone(1, {.0f, .0f, cosTime});
 
-			if (tempY < -300)
-			{
-				goUp = true;
-			}
-			
-			else if (tempY > 100)
-			{
-				goUp = false;
-			}
+			// Gather all pose matrices
+			mainSkeleton.GatherMatrixPalette();
 
-			if (tempX < -100)
-			{
-				goRight = true;
-			}
-
-			else if (tempX > 100)
-			{
-				goRight = false;
-			}
-
-			if (goRight)
-			{
-				mainSkeleton.MoveBone(1, { speed,0,0 });
-				tempX += speed;
-			}
-
-			else
-			{
-				mainSkeleton.MoveBone(1, { -speed,0,0 });
-				tempX -= speed;
-			}
-
-			if (goUp)
-			{
-				mainSkeleton.MoveBone(1, { 0,0,speed });
-				tempY += speed;
-			}
-
-			else
-			{
-				mainSkeleton.MoveBone(1, { 0,0,-speed });
-				tempY -= speed;
-			}
-
-			//mainSkeleton.MoveBone(1, { 0,-0.001,0 });
+			SetSkinningPose((float*)mainSkeleton.palette, mainSkeleton.size - 7u);
 		}
 };
 
