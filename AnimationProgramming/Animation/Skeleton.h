@@ -1,9 +1,9 @@
 #ifndef SKELETON_H
 #define SKELETON_H
 
-#include <vector>
-
 struct Bone;
+namespace Math
+{ struct Vector3; }
 
 struct Skeleton
 {
@@ -13,7 +13,9 @@ struct Skeleton
     Skeleton() = default;
     ~Skeleton();
 
-    void init();
+    void Init() noexcept;
+
+    void MoveBone(int boneIndex, const Math::Vector3& translation) noexcept;
 
     void Draw() const;
 

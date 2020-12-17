@@ -23,8 +23,8 @@ Skeleton::~Skeleton()
 }
 
 
-// Skeleton is initialized here because it seems to help reduce data races at launch
-void Skeleton::init()
+// Skeleton is initialized here because it prevents crashes related to data races
+void Skeleton::Init() noexcept
 {
 	size = GetSkeletonBoneCount();
 	boneList = new Bone[size];
@@ -41,8 +41,6 @@ void Skeleton::init()
 
 void Skeleton::Draw() const
 {
-
-	//boneList[1].Move(Math::vec3{0,-0.00001,}, *this); //Move fuction call;
 	// The last 7 bones are IK
 	const size_t boneCount{size - 7u};
 
