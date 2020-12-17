@@ -2,8 +2,8 @@
 #include "Skeleton.h"
 #include "Engine.h"
 
-Bone::Bone(int index, Skeleton& skeleton)
-    : invBindPose{}, localPose{}, globalPose{}, parentIndex{ GetSkeletonBoneParentIndex(index) }
+Bone::Bone(int index, const Skeleton& skeleton) noexcept
+    : invBindPose{}, localPose{}, globalPose{}, parentIndex{GetSkeletonBoneParentIndex(index)}
 {
     GetSkeletonBoneLocalBindTransform(index, localPose.trans.x, localPose.trans.y, localPose.trans.z,
                                       localPose.rot.s, localPose.rot.v.x, localPose.rot.v.y, localPose.rot.v.z);
@@ -22,6 +22,7 @@ Bone::Bone(int index, Skeleton& skeleton)
         invBindPose = globalPose.inversed();
     }
 }
+
 
 void Bone::Move(Math::vec3 translation, const Skeleton& skeleton)
 {
