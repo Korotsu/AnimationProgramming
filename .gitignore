@@ -5,8 +5,9 @@
 /AnimationProgramming/Release/*
 /Release/*
 /Data/*
-!/Data/Resources/
-/Data/Resources/*
-!/Data/Resources/skinning.vs
+/Release/*
+!/Release/Resources/
+/Release/Resources/*
+!/Release/Resources/skinning.vs
 /AnimationProgramming/Debug/*
 /AnimationProgramming/x64/Debug/*

@@ -121,14 +121,14 @@
     <None Include="Math\src\Matrix3.inl">
       <Filter>Source Files\Math</Filter>
     </None>
-    <None Include="..\Release\Resources\skinning.vs">
-      <Filter>Source Files\Shader</Filter>
-    </None>
     <None Include="Math\src\conversion.inl">
       <Filter>Source Files\Math</Filter>
     </None>
     <None Include="Math\src\Transform.inl">
       <Filter>Source Files\Math</Filter>
+    </None>
+    <None Include="..\Release\Resources\skinning.vs">
+      <Filter>Source Files\Shader</Filter>
     </None>
   </ItemGroup>
 </Project>
