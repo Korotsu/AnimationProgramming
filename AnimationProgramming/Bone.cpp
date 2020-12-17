@@ -7,7 +7,7 @@ Bone::Bone(int index, Skeleton& skeleton)
 {
     GetSkeletonBoneLocalBindTransform(index, pose.trans.x, pose.trans.y, pose.trans.z, pose.rot[0], pose.rot[1], pose.rot[2], pose.rot[3]);
 
-    if (parent != -1)
+    if (parent > -1)
     {
         // Genre invBindPose = inv(pose x skeleton.bone[parent].invBindPos)
 
@@ -18,6 +18,8 @@ Bone::Bone(int index, Skeleton& skeleton)
         //std::cout << "Matrix inv inv xd = " << invBindPos << std::endl;
 
         invBindPos = (pose.toMatrix() * skeleton.boneList[parent].invBindPos.inversed()).inversed();
+
+        std::cout << GetSkeletonBoneName(index) << " matrix = " << pose.toMatrix() << std::endl;
     }
 
     else

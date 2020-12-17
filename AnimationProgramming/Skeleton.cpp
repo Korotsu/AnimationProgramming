@@ -59,18 +59,18 @@ void Skeleton::Draw() const
 		//Math::mat4 worldChild  = boneList[i].pose.toMatrix() * boneList[boneList[i].parent].invBindPos.inversed();
 		//Math::mat4 worldParent = boneList[boneList[i].parent].pose.toMatrix() * boneList[boneList[boneList[i].parent].parent].invBindPos.inversed();
 
-		Math::mat4 worldChild = boneList[i].invBindPos.inversed();
-		Math::mat4 worldParent = boneList[boneList[i].parent].invBindPos.inversed();
+		Math::mat4 worldChild  = boneList[i].invBindPos;
+		Math::mat4 worldParent = boneList[boneList[i].parent].invBindPos;
 
 		/*DrawLine(boneList[i].pose.trans.x, boneList[i].pose.trans.y, boneList[i].pose.trans.z,
 				 boneList[boneList[i].parent].pose.trans.x, boneList[boneList[i].parent].pose.trans.y, boneList[boneList[i].parent].pose.trans.z,
 				 1.f, .0f, .0f);*/
 
-		DrawLine(worldChild[12], worldChild[13], worldChild[14],
-			worldParent[12], worldParent[13], worldParent[14],
-			1.f, .0f, .0f);
+		DrawLine(worldChild[12] - 100, worldChild[13], worldChild[14],
+			worldParent[12] - 100, worldParent[13], worldParent[14],
+			1.f, .1f, .1f);
 
-		//std::cout << "Child  vector = x : " << worldChild.xyz.x << "; y : " << worldChild.xyz.y << "; z : " << worldChild.xyz.z << ";" << std::endl;
+		//std::cout << "Child  vector = x : " << worldChild[12] << "; y : " << worldChild[13] << "; z : " << worldChild[14] << ";" << std::endl;
 		//std::cout << "Parent vector = x : " << worldParent.xyz.x << "; y : " << worldParent.xyz.y << "; z : " << worldParent.xyz.z << ";" << std::endl;
 
 		//std::cout << "Matrix inv inv xd = " << boneList[i].invBindPos << std::endl;
@@ -78,7 +78,11 @@ void Skeleton::Draw() const
 
 	Math::vec3 pos;
 	Math::Quaternion quat;
-	GetSkeletonBoneLocalBindTransform(0, pos.x, pos.y, pos.z, quat[0], quat[1], quat[2], quat[3]);
 
-	std::cout << "Root  vector = x : " << pos.x << "; y : " << pos.y << "; z : " << pos.z << ";" << std::endl;
+	int spineInt = 2;
+	GetSkeletonBoneLocalBindTransform(spineInt, pos.x, pos.y, pos.z, quat[0], quat[1], quat[2], quat[3]);
+
+	const char* spineParentName = GetSkeletonBoneName(spineInt);
+
+	//std::cout << spineParentName << " vector = x : " << pos.x << "; y : " << pos.y << "; z : " << pos.z << ";" << std::endl;
 }
