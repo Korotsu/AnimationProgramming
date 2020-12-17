@@ -26,16 +26,27 @@ Skeleton::~Skeleton()
 // Skeleton is initialized here because it prevents crashes related to data races
 void Skeleton::Init() noexcept
 {
-	size = GetSkeletonBoneCount();
-	boneList = new Bone[size];
-
-	if (!boneList)
-		return;
+	size		= GetSkeletonBoneCount();
+	boneList	= new Bone[size];
+	palette		= new Math::Mat4[size];
 
 	for (size_t i{0u}; i < size; ++i)
 	{
 		boneList[i] = std::move(Bone(i, *this));
 	}
+}
+
+
+void Skeleton::MoveBone(int boneIndex, const Math::Vec3& translation) noexcept
+{
+	// Invalid bone
+	if ((unsigned int)boneIndex > size)
+		return;
+
+	Bone& bone{boneList[boneIndex]};
+
+	bone.localPose.trans += translation;
+	bone.globalPose = boneList[bone.parentIndex].globalPose * bone.localPose.toMatrix4();
 }
 
 
@@ -53,8 +64,20 @@ void Skeleton::Draw() const
 		Math::Vec3 worldChild	{Math::Transform::translation(boneList[i].globalPose)};
 		Math::Vec3 worldParent	{Math::Transform::translation(boneList[boneList[i].parentIndex].globalPose)};
 
-		DrawLine(worldChild.x, worldChild.y - 25.f, worldChild.z,
-				 worldParent.x, worldParent.y - 25.f, worldParent.z,
+		DrawLine(worldChild.x, worldChild.y, worldChild.z,
+				 worldParent.x, worldParent.y, worldParent.z,
 				 1.f, .0f, .0f);
+	}
+}
+
+
+void Skeleton::GatherMatrixPalette() noexcept
+{
+	// The last 7 bones are IK
+	const size_t end{size - 7u};
+	for (size_t i{0u}; i < size; ++i)
+	{
+		const Bone& bone{boneList[i]};
+		palette[i] = bone.globalPose * bone.invBindPose;
 	}
 }
