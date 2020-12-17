@@ -16,6 +16,7 @@ class CSimulation final : public ISimulation
 		virtual void Init() final
 		{
 			mainSkeleton.Init();
+			mainSkeleton.MoveBone(1, {.0f, 5.f, .0f});
 
 			//mainSkeleton.boneList[10].Move({.0f, -10.f, .0f}, mainSkeleton);
 
@@ -55,13 +56,13 @@ class CSimulation final : public ISimulation
 			mainSkeleton.Draw();
 
 			// Move the fingers
-			const float cosTime{.1f * cosf(clock() * 0.001f)};
-			const float sinTime{.1f * sin(clock() * 0.001f)};
-			mainSkeleton.MoveBone(10, {cosTime, sinTime, .0f});
-			mainSkeleton.MoveBone(11, {cosTime, sinTime, .0f});
-			mainSkeleton.MoveBone(12, {cosTime, sinTime, .0f});
-			mainSkeleton.MoveBone(13, {cosTime, sinTime, .0f});
-			mainSkeleton.MoveBone(14, {cosTime, sinTime, .0f});
+			const float cosTime{.25f * cosf(clock() * 0.01f)};
+			mainSkeleton.MoveBone(1, {.0f, .0f, cosTime});
+
+			// Gather all pose matrices
+			mainSkeleton.GatherMatrixPalette();
+
+			SetSkinningPose((float*)mainSkeleton.palette, mainSkeleton.size - 7u);
 		}
 };
 
