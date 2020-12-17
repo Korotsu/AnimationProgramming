@@ -3,4 +3,4 @@
 #include "Transform.h"
 
 Math::Matrix4 BonePose::toMatrix4() const noexcept
-{ return Math::Transform::translation(trans) * Math::toMatrix4(rot) * Math::Transform::scaling(scale); }
+{ return Math::Transform::translation(trans) * Math::toMatrix4(rot).inversed() * Math::Transform::scaling(scale); }

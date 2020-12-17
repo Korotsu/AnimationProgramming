@@ -10,7 +10,8 @@ struct Skeleton;
 struct Bone
 {
     Math::Matrix4   invBindPose {};
-    BonePose        pose        {};
+    BonePose        localPose   {};
+    Math::Matrix4   globaPose   {};
     int             parentIndex {0};
 
     Bone() = default;

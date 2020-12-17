@@ -53,7 +53,7 @@ inline Mat4 Transform::rotation_z(const f32 angle) noexcept
 
 
 inline Mat4 Transform::rotation(const Vec3& v) noexcept
-{ return rotation_y(v.y) * rotation_x(v.x) * rotation_z(v.z); }
+{ return rotation_x(v.x) * rotation_y(v.y) * rotation_z(v.z); }
 
 
 inline constexpr Mat4 Transform::scaling(const Vec3& v) noexcept
