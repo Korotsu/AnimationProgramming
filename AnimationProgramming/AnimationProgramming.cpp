@@ -12,10 +12,16 @@ class CSimulation final : public ISimulation
 {
 	private:
 		Skeleton mainSkeleton;
+		float tempX = 0;
+		float tempY = -100;
+		bool goUp = false;
+		bool goRight = false;
+		float speed = 0.3;
 
 		virtual void Init() final
 		{
 			mainSkeleton.Init();
+			mainSkeleton.MoveBone(1, { 0, -100, 0 });
 
 			//mainSkeleton.boneList[10].Move({.0f, -10.f, .0f}, mainSkeleton);
 
@@ -55,13 +61,60 @@ class CSimulation final : public ISimulation
 			mainSkeleton.Draw();
 
 			// Move the fingers
-			const float cosTime{.1f * cosf(clock() * 0.001f)};
+			/*const float cosTime{.1f * cosf(clock() * 0.001f)};
+			const float cosTime2{ .1f * cosf(clock() * 0.001f) };
 			const float sinTime{.1f * sin(clock() * 0.001f)};
-			mainSkeleton.MoveBone(10, {cosTime, sinTime, .0f});
-			mainSkeleton.MoveBone(11, {cosTime, sinTime, .0f});
-			mainSkeleton.MoveBone(12, {cosTime, sinTime, .0f});
-			mainSkeleton.MoveBone(13, {cosTime, sinTime, .0f});
-			mainSkeleton.MoveBone(14, {cosTime, sinTime, .0f});
+			mainSkeleton.MoveBone(1, { 1- cosTime, 0., cosTime2 });*/
+			//mainSkeleton.MoveBone(11, {cosTime, sinTime, .0f});
+			//mainSkeleton.MoveBone(12, {cosTime, sinTime, .0f});
+			//mainSkeleton.MoveBone(13, {cosTime, sinTime, .0f});
+			//mainSkeleton.MoveBone(14, {cosTime, sinTime, .0f});
+
+			if (tempY < -300)
+			{
+				goUp = true;
+			}
+			
+			else if (tempY > 100)
+			{
+				goUp = false;
+			}
+
+			if (tempX < -100)
+			{
+				goRight = true;
+			}
+
+			else if (tempX > 100)
+			{
+				goRight = false;
+			}
+
+			if (goRight)
+			{
+				mainSkeleton.MoveBone(1, { speed,0,0 });
+				tempX += speed;
+			}
+
+			else
+			{
+				mainSkeleton.MoveBone(1, { -speed,0,0 });
+				tempX -= speed;
+			}
+
+			if (goUp)
+			{
+				mainSkeleton.MoveBone(1, { 0,0,speed });
+				tempY += speed;
+			}
+
+			else
+			{
+				mainSkeleton.MoveBone(1, { 0,0,-speed });
+				tempY -= speed;
+			}
+
+			//mainSkeleton.MoveBone(1, { 0,-0.001,0 });
 		}
 };
 

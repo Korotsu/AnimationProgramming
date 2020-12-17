@@ -58,3 +58,11 @@ void Skeleton::Draw() const
 				 1.f, .0f, .0f);
 	}
 }
+
+void Skeleton::MoveBone(int boneIndex, const Math::Vector3& translation) noexcept
+{
+	Bone* bone			= &boneList[boneIndex];
+	bone->localPose.trans += translation;
+	bone->globalPose	= boneList[bone->parentIndex].globalPose * bone->localPose.toMatrix4();
+	bone->invBindPose	= bone->globalPose.inversed();
+}
