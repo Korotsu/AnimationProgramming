@@ -192,14 +192,12 @@ inline constexpr Matrix4& Matrix4::operator/=(const f32 k) noexcept
 
 inline constexpr Vec4 Matrix4::operator*(const Vec4& v) const noexcept
 {
-    const f32 x{v.xyz.x}, y{v.xyz.y}, z{v.xyz.z}, w{v.w};
-
     return
     {
-        (coef[0] * x) + (coef[4] * y) + (coef[8]  * z) + (coef[12] * w),
-        (coef[1] * x) + (coef[5] * y) + (coef[9]  * z) + (coef[13] * w),
-        (coef[2] * x) + (coef[6] * y) + (coef[10] * z) + (coef[14] * w),
-        (coef[3] * x) + (coef[7] * y) + (coef[11] * z) + (coef[15] * w)
+        (coef[0] * v.xyz.x) + (coef[4] * v.xyz.y) + (coef[8] * v.xyz.z) + (coef[12] * v.w),
+        (coef[1] * v.xyz.x) + (coef[5] * v.xyz.y) + (coef[9] * v.xyz.z) + (coef[13] * v.w),
+        (coef[2] * v.xyz.x) + (coef[6] * v.xyz.y) + (coef[10] * v.xyz.z) + (coef[14] * v.w),
+        (coef[3] * v.xyz.x) + (coef[7] * v.xyz.y) + (coef[11] * v.xyz.z) + (coef[15] * v.w)
     };
 }
 

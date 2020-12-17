@@ -1,6 +1,6 @@
 /* =================== Methods =================== */
 inline constexpr Vector4 Vector4::homogenized() const noexcept
-{ return {xyz / w, 1.f}; }
+{ return {xyz / w}; }
 
 
 inline constexpr void Vector4::homogenize() noexcept
