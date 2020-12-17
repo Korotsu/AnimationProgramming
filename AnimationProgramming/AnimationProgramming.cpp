@@ -3,8 +3,10 @@
 #include "Engine.h"
 #include "Simulation.h"
 #include "Skeleton.h"
+#include "Bone.h"
 
 #include <utility>
+#include <ctime>
 
 class CSimulation final : public ISimulation
 {
@@ -13,7 +15,10 @@ class CSimulation final : public ISimulation
 
 		virtual void Init() final
 		{
-			mainSkeleton.init();
+			mainSkeleton.Init();
+
+			//mainSkeleton.boneList[10].Move({.0f, -10.f, .0f}, mainSkeleton);
+
 
 			/*const size_t boneCount		= GetSkeletonBoneCount();
 			int spine01					= GetSkeletonBoneIndex("spine_01");	// Bone parent
@@ -48,6 +53,15 @@ class CSimulation final : public ISimulation
 			DrawLine(0, 0, 0, 0, 0, 100, 0, 0, 1);
 
 			mainSkeleton.Draw();
+
+			// Move the fingers
+			const float cosTime{.1f * cosf(clock() * 0.001f)};
+			const float sinTime{.1f * sin(clock() * 0.001f)};
+			mainSkeleton.MoveBone(10, {cosTime, sinTime, .0f});
+			mainSkeleton.MoveBone(11, {cosTime, sinTime, .0f});
+			mainSkeleton.MoveBone(12, {cosTime, sinTime, .0f});
+			mainSkeleton.MoveBone(13, {cosTime, sinTime, .0f});
+			mainSkeleton.MoveBone(14, {cosTime, sinTime, .0f});
 		}
 };
 
