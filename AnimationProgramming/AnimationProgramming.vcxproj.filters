@@ -63,16 +63,19 @@
     <ClInclude Include="Math\include\constants.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Bone.h">
-      <Filter>Header Files\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="BonePose.h">
-      <Filter>Header Files\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="Skeleton.h">
-      <Filter>Header Files\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="Math\include\conversion.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\BonePose.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Skeleton.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Bone.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\include\Transform.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
@@ -86,13 +89,13 @@
     <ClCompile Include="AnimationProgramming.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bone.cpp">
+    <ClCompile Include="Animation\Bone.cpp">
       <Filter>Source Files\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="Skeleton.cpp">
+    <ClCompile Include="Animation\BonePose.cpp">
       <Filter>Source Files\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="BonePose.cpp">
+    <ClCompile Include="Animation\Skeleton.cpp">
       <Filter>Source Files\Animation</Filter>
     </ClCompile>
   </ItemGroup>
@@ -122,6 +125,9 @@
       <Filter>Source Files\Shader</Filter>
     </None>
     <None Include="Math\src\conversion.inl">
+      <Filter>Source Files\Math</Filter>
+    </None>
+    <None Include="Math\src\Transform.inl">
       <Filter>Source Files\Math</Filter>
     </None>
   </ItemGroup>
