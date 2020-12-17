@@ -4,7 +4,6 @@ inline constexpr Quaternion Quaternion::identity() noexcept
 
 
 
-
 /* =================== Constructors =================== */
 // From an angle in radian and an axis, in the "usual" mathematical order
 inline Quaternion::Quaternion(const f32 angle, const Vec3& axis) noexcept

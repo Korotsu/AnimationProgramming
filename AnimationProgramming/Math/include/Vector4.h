@@ -9,8 +9,8 @@ namespace Math
 struct Vector4
 {
     // Data members
-    Vec3    xyz {};
-    f32     w   {1.f};
+    Vec3    xyz{};
+    f32     w{1.f};
 
     // Methods
     constexpr Vector4 homogenized ()  const noexcept;

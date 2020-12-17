@@ -10,7 +10,7 @@ struct BonePose
     Math::Vector3       trans   {};
     Math::Vector3       scale   {1.f, 1.f, 1.f};
 
-    Math::Matrix4 toMatrix() const noexcept;
+    Math::Matrix4 toMatrix4() const noexcept;
 };
 
 #endif

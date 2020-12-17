@@ -7,8 +7,8 @@ struct Bone;
 
 struct Skeleton
 {
-    size_t    size    {0u};
-    Bone*           boneList{nullptr};
+    size_t  size    {0u};
+    Bone*   boneList{nullptr};
 
     Skeleton() = default;
     ~Skeleton();

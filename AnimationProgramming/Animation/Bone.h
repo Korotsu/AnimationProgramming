@@ -9,12 +9,15 @@ struct Skeleton;
 // invBindPose is the matrix which undoes the T-pose of this bone
 struct Bone
 {
-    Math::Matrix4   invBindPos  {};
+    Math::Matrix4   invBindPose {};
     BonePose        pose        {};
-    int             parent      {0};
+    int             parentIndex {0};
 
     Bone() = default;
+    Bone(Bone&& other) = default;
     Bone(int index, Skeleton& skeleton);
+
+    Bone& operator=(Bone&& other) = default;
 };
 
 #endif
