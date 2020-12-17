@@ -1,6 +1,7 @@
 #include "Skeleton.h"
 #include "Bone.h"
 #include "Engine.h"
+#include "Transform.h"
 
 #include <utility>
 
@@ -22,6 +23,7 @@ Skeleton::~Skeleton()
 }
 
 
+// Skeleton is initialized here because it seems to help reduce data races at launch
 void Skeleton::init()
 {
 	size = GetSkeletonBoneCount();
@@ -39,82 +41,20 @@ void Skeleton::init()
 
 void Skeleton::Draw() const
 {
-	/*// The last 7 bones are IK bones
-	const Bone* end{boneList + size - 7u};
-
-	// First bone is root, ignore it
-	for (Bone const* bone{boneList + 1u}; bone < end; ++bone)
-	{
-		//const Bone* parent{boneList + bone->parentIndex};
-
-		Math::Vec4 childWorldPos{bone->invBindPose.inversed() * Math::Vec4{bone->pose.trans}};
-		Math::Mat4 parentWorldPos{bone->invBindPose.inversed()};
-		
-		 Repères XYZ
-		DrawLine(childWorldPos.xyz.x, childWorldPos.xyz.y, childWorldPos.xyz.z,
-				 childWorldPos.xyz.x + 2.5f, childWorldPos.xyz.y, childWorldPos.xyz.z,
-				 1.f, .0f, .0f);
-
-		DrawLine(childWorldPos.xyz.x, childWorldPos.xyz.y, childWorldPos.xyz.z,
-				 childWorldPos.xyz.x, childWorldPos.xyz.y + 2.5f, childWorldPos.xyz.z,
-				 .0f, 1.f, .0f);
-
-		DrawLine(childWorldPos.xyz.x, childWorldPos.xyz.y, childWorldPos.xyz.z,
-				 childWorldPos.xyz.x, childWorldPos.xyz.y, childWorldPos.xyz.z + 2.5f,
-				 .0f, .0f, 1.f);
-		
-		DrawLine(childWorldPos.xyz.x, childWorldPos.xyz.y, childWorldPos.xyz.z,
-				 parentWorldPos[12], parentWorldPos[13], parentWorldPos[14],
-				 1.f, .0f, .0f);
-	}*/
-
-
-
 	// The last 7 bones are IK
-	const size_t boneCount{ size - 7u };
+	const size_t boneCount{size - 7u};
 
-	for (size_t i = 1u; i < boneCount; i++)
+	// The 1st bone is the root
+	// The 2nd is the pelvis
+	// Ignore them, since drawing the bone between these 2 joints is not useful
+	for (size_t i = 2u; i < boneCount; ++i)
 	{
-		/*Math::vec4 worldChild{boneList[i].pose.trans};
-		Math::vec4 worldParent{ boneList[boneList[i].parent].pose.trans };
+		// Get the translation of each transform
+		Math::Vec3 worldChild	{Math::Transform::translation(boneList[i].globalPose)};
+		Math::Vec3 worldParent	{Math::Transform::translation(boneList[boneList[i].parentIndex].globalPose)};
 
-		worldChild = boneList[i].invBindPos.inversed() * worldChild;
-		worldParent = boneList[boneList[i].parent].invBindPos.inversed() * worldParent;
-
-		worldChild.homogenize();
-		worldParent.homogenize();*/
-
-		//Math::mat4 worldChild  = boneList[i].pose.toMatrix() * boneList[boneList[i].parent].invBindPos.inversed();
-		//Math::mat4 worldParent = boneList[boneList[i].parent].pose.toMatrix() * boneList[boneList[boneList[i].parent].parent].invBindPos.inversed();
-
-		/*Math::mat4 worldChild = boneList[i].invBindPose.transposed();
-		Math::mat4 worldParent = boneList[boneList[i].parentIndex].invBindPose.transposed();*/
-
-		Math::mat4 worldChild  = boneList[i].globaPose;
-		Math::mat4 worldParent = boneList[boneList[i].parentIndex].globaPose;
-
-		/*DrawLine(boneList[i].pose.trans.x, boneList[i].pose.trans.y, boneList[i].pose.trans.z,
-				 boneList[boneList[i].parent].pose.trans.x, boneList[boneList[i].parent].pose.trans.y, boneList[boneList[i].parent].pose.trans.z,
-				 1.f, .0f, .0f);*/
-
-		DrawLine(worldChild[12] + 100, worldChild[13], worldChild[14],
-			worldParent[12] + 100, worldParent[13], worldParent[14],
-			1.f, .1f, .1f);
-
-		std::cout << "Child  vector = x : " << worldChild[12] << "; y : " << worldChild[13] << "; z : " << worldChild[14] << ";" << std::endl;
-		//std::cout << "Parent vector = x : " << worldParent.xyz.x << "; y : " << worldParent.xyz.y << "; z : " << worldParent.xyz.z << ";" << std::endl;
-
-		//std::cout << "Matrix inv inv xd = " << boneList[i].invBindPos << std::endl;
+		DrawLine(worldChild.x, worldChild.y - 25.f, worldChild.z,
+				 worldParent.x, worldParent.y - 25.f, worldParent.z,
+				 1.f, .0f, .0f);
 	}
-
-	Math::vec3 pos;
-	Math::Quaternion quat;
-
-	int spineInt = 3;
-	GetSkeletonBoneLocalBindTransform(spineInt, pos.x, pos.y, pos.z, quat[0], quat[1], quat[2], quat[3]);
-
-	const char* spineParentName = GetSkeletonBoneName(spineInt);
-
-	std::cout << spineParentName << " vector = x : " << pos.x << "; y : " << pos.y << "; z : " << pos.z << ";" << std::endl;
-
 }
