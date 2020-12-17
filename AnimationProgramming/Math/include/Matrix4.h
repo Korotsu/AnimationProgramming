@@ -7,6 +7,7 @@
 
 #ifdef DEBUG
 #include <iomanip>
+#include <iostream>
 #endif
 
 namespace Math
