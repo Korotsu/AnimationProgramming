@@ -2,6 +2,7 @@
 #include "Bone.h"
 #include "Engine.h"
 #include "Transform.h"
+#include "Keyframe.h"
 
 #include <utility>
 
@@ -83,18 +84,12 @@ void Skeleton::GatherMatrixPalette() noexcept
 }
 
 
-void Skeleton::ApplyAnimTransform(const char* animName, size_t keyframe) noexcept
+void Skeleton::ApplyKeyframe(const Keyframe& keyframe) noexcept
 {
-	if (!animName || keyframe > GetAnimKeyCount(animName))
-		return;
-
 	for (size_t i{0u}; i < size; ++i)
 	{
-		Math::Quaternion rot;
-		Math::Vec3 pos;
+		const BonePose& pose{keyframe.poses[i]};
 
-		GetAnimLocalBoneTransform(animName, i, keyframe, pos.x, pos.y, pos.z, rot.s, rot.v.x, rot.v.y, rot.v.z);
-
-		SetBoneTransform(i, pos, rot);
+		SetBoneTransform(i, pose.trans, pose.rot);
 	}
 }

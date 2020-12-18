@@ -2,6 +2,8 @@
 #define SKELETON_H
 
 struct Bone;
+struct Keyframe;
+
 namespace Math
 {
     struct Vector3;
@@ -26,7 +28,7 @@ struct Skeleton
 
     void GatherMatrixPalette() noexcept;
 
-    void ApplyAnimTransform(const char* animName, size_t keyframe) noexcept;
+    void ApplyKeyframe(const Keyframe& keyframe) noexcept;
 
     Skeleton& operator=(Skeleton&&) = default;
 };
