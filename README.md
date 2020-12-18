@@ -28,5 +28,9 @@ The final version is tagged `GOLD`.
 
 ## Architecture
 
+- `AnimationProgramming/` contains sources and Visual Studio's solution explorer files
+    - `AnimationProgramming/Math/` has all the sources for the math used throughout this project
+    - `AnimationProgramming/Animation/` has all animation related sources added to the original project
+
 ![architecture.png](Docs/architecture.png)
 *You can find this picture in Docs/*
