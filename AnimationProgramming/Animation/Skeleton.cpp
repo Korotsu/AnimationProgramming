@@ -2,21 +2,8 @@
 #include "Bone.h"
 #include "Engine.h"
 #include "Transform.h"
-#include "Matrix3.h"
 
 #include <utility>
-
-/*
-Skeleton::Skeleton()
-	: size{GetSkeletonBoneCount()},
-	  boneList{new Bone[size]}
-{
-	for (size_t i{1u}; i < size; ++i)
-	{
-		boneList[i] = std::move(Bone(i, *this));
-	}
-}
-*/
 
 Skeleton::~Skeleton()
 {
@@ -48,83 +35,19 @@ void Skeleton::SetBoneTransform(int boneIndex, const Math::Vector3& trans, const
 
 	if (bone.parentIndex != -1)
 	{
-		/*bone.localAnimPose.trans = trans;
-		bone.localAnimPose.rot = rot;
-
-		Math::Matrix3 tempParentMatrix3 = Math::Matrix3::identity();
-		tempParentMatrix3.coef[0] = boneList[bone.parentIndex].globalBindPose[0];
-		tempParentMatrix3.coef[1] = boneList[bone.parentIndex].globalBindPose[1];
-		tempParentMatrix3.coef[2] = boneList[bone.parentIndex].globalBindPose[2];
-		tempParentMatrix3.coef[3] = boneList[bone.parentIndex].globalBindPose[4];
-		tempParentMatrix3.coef[4] = boneList[bone.parentIndex].globalBindPose[5];
-		tempParentMatrix3.coef[5] = boneList[bone.parentIndex].globalBindPose[6];
-		tempParentMatrix3.coef[6] = boneList[bone.parentIndex].globalBindPose[8];
-		tempParentMatrix3.coef[7] = boneList[bone.parentIndex].globalBindPose[9];
-		tempParentMatrix3.coef[8] = boneList[bone.parentIndex].globalBindPose[10];
-
-		Math::Vec3 newPos = bone.localBindPose.trans + bone.localAnimPose.trans;
-
-		Math::Quaternion parentGlobalRot{ tempParentMatrix3 };
-
-		newPos = parentGlobalRot * newPos;
-
-		Math::Vector3 parentGlobalPos{ boneList[bone.parentIndex].globalBindPose[12],boneList[bone.parentIndex].globalBindPose[13],boneList[bone.parentIndex].globalBindPose[14] };
-
-		parentGlobalPos += newPos;
-
-		parentGlobalRot = (parentGlobalRot * bone.localBindPose.rot * bone.localAnimPose.rot);
-
-		BonePose newGlobalPose;
-
-		newGlobalPose.trans = parentGlobalPos;
-		newGlobalPose.rot = parentGlobalRot;*/
-
-		/*Math::Matrix3 tempParentMatrix3 = Math::Matrix3::identity();
-		tempParentMatrix3.coef[0] = boneList[bone.parentIndex].globalAnimPose[0];
-		tempParentMatrix3.coef[1] = boneList[bone.parentIndex].globalAnimPose[1];
-		tempParentMatrix3.coef[2] = boneList[bone.parentIndex].globalAnimPose[2];
-		tempParentMatrix3.coef[3] = boneList[bone.parentIndex].globalAnimPose[4];
-		tempParentMatrix3.coef[4] = boneList[bone.parentIndex].globalAnimPose[5];
-		tempParentMatrix3.coef[5] = boneList[bone.parentIndex].globalAnimPose[6];
-		tempParentMatrix3.coef[6] = boneList[bone.parentIndex].globalAnimPose[8];
-		tempParentMatrix3.coef[7] = boneList[bone.parentIndex].globalAnimPose[9];
-		tempParentMatrix3.coef[8] = boneList[bone.parentIndex].globalAnimPose[10];
-
-		Math::Quaternion parentGlobalRot{ tempParentMatrix3 };*/
-
-		bone.localAnimPose.trans	= /*parentGlobalRot */ (bone.localBindPose.trans + trans);
+		bone.localAnimPose.trans	= bone.localBindPose.trans + trans;
 		bone.localAnimPose.rot		= bone.localBindPose.rot * rot;
-		//bone.localAnimPose.rot		= bone.localBindPose.rot * rot;
 
 		bone.globalAnimPose			= boneList[bone.parentIndex].globalAnimPose * bone.localAnimPose.toMatrix4();
-
-
-		//BonePose newGlobalPose;
-
-		//newGlobalPose.trans = parentGlobalPos;
-		//newGlobalPose.rot = parentGlobalRot;
-
-
-		//bone.globalAnimPose = newGlobalPose.toMatrix4();
 	}
 
 	else
 	{
 		bone.localAnimPose.trans = bone.localBindPose.trans + trans;
 		bone.localAnimPose.rot = bone.localBindPose.rot * rot;
-		//bone.localAnimPose.rot = bone.localBindPose.rot * rot;
 
 		bone.globalAnimPose = bone.localAnimPose.toMatrix4();
 	}
-
-	/*bone.localPose.trans	= trans;
-	bone.localPose.rot		= rot;
-	bone.globalPose			= bone.localPose.toMatrix4() * localAnim.toMatrix4();*/
-
-	/*if (bone.parentIndex != -1)
-		bone.globalPose = boneList[bone.parentIndex].globalPose * bone.globalPose;*/
-
-
 }
 
 
@@ -142,8 +65,8 @@ void Skeleton::Draw() const
 		Math::Vec3 worldChild	{Math::Transform::translation(boneList[i].globalAnimPose)};
 		Math::Vec3 worldParent	{Math::Transform::translation(boneList[boneList[i].parentIndex].globalAnimPose)};
 
-		DrawLine(worldChild.x, worldChild.y, worldChild.z,
-				 worldParent.x, worldParent.y, worldParent.z,
+		DrawLine(worldChild.x, worldChild.y - 25.f, worldChild.z,
+				 worldParent.x, worldParent.y - 25.f, worldParent.z,
 				 1.f, .0f, .0f);
 	}
 }
@@ -162,9 +85,6 @@ void Skeleton::GatherMatrixPalette() noexcept
 
 void Skeleton::ApplyAnimTransform(const char* animName, size_t keyframe) noexcept
 {
-
-	//std::cout << GetAnimKeyCount(animName) << std::endl;
-
 	if (!animName || keyframe > GetAnimKeyCount(animName))
 		return;
 
@@ -173,11 +93,7 @@ void Skeleton::ApplyAnimTransform(const char* animName, size_t keyframe) noexcep
 		Math::Quaternion rot;
 		Math::Vec3 pos;
 
-		GetAnimLocalBoneTransform(animName, i, keyframe, pos.x, pos.y, pos.z, rot[0], rot[1], rot[2], rot[3]);
-
-
-		std::cout << keyframe << std::endl;
-
+		GetAnimLocalBoneTransform(animName, i, keyframe, pos.x, pos.y, pos.z, rot.s, rot.v.x, rot.v.y, rot.v.z);
 
 		SetBoneTransform(i, pos, rot);
 	}
