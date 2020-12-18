@@ -7,20 +7,22 @@
 #include "Transform.h"
 #include "AnimData.h"
 
-#include <utility>
+#include <chrono>
 
 class CSimulation final : public ISimulation
 {
 	private:
 		Skeleton	mainSkeleton;
-		AnimData	walkAnim; /* Uncomment to test raw walk animation */
-		size_t		animationProgress{0u};
+		AnimData	walkAnim;
+		size_t		animationProgress	{0u};
 
+		const float								frameRate{1.f / 30.f};
+		std::chrono::steady_clock::time_point	t1;
 
 		virtual void Init() final
 		{
 			mainSkeleton.Init();
-			walkAnim.Init("ThirdPersonWalk.anim"); /* Uncomment to test raw walk animation */
+			walkAnim.Init("ThirdPersonWalk.anim");
 		}
 
 
@@ -31,13 +33,20 @@ class CSimulation final : public ISimulation
 			DrawLine(0, 0, 0, 0, 100, 0, 0, 1, 0);
 			DrawLine(0, 0, 0, 0, 0, 100, 0, 0, 1);
 
-			walkAnim.ApplyKeyframeTo(animationProgress++, mainSkeleton); /* Uncomment to test raw walk animation */
+			const std::chrono::steady_clock::time_point t2{std::chrono::steady_clock::now()};
+			const std::chrono::duration<float> duration{t2 - t1};
+			if (duration.count() >= frameRate)
+			{
+				walkAnim.ApplyKeyframeTo(animationProgress++, mainSkeleton);
+
+				// Gather all pose matrices and send them to the skinning shader
+				mainSkeleton.GatherMatrixPalette();
+				SetSkinningPose((float*)mainSkeleton.palette, mainSkeleton.size);
+
+				t1 = t2;
+			}
 
 			mainSkeleton.Draw();
-
-			// Gather all pose matrices and send them to the skinning shader
-			mainSkeleton.GatherMatrixPalette();
-			SetSkinningPose((float*)mainSkeleton.palette, mainSkeleton.size);
 		}
 };
 
