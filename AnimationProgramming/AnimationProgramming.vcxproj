@@ -155,8 +155,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation\AnimData.h" />
     <ClInclude Include="Animation\Bone.h" />
     <ClInclude Include="Animation\BonePose.h" />
+    <ClInclude Include="Animation\Keyframe.h" />
     <ClInclude Include="Animation\Skeleton.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Math\include\constants.h" />
@@ -173,8 +175,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationProgramming.cpp" />
+    <ClCompile Include="Animation\AnimData.cpp" />
     <ClCompile Include="Animation\Bone.cpp" />
     <ClCompile Include="Animation\BonePose.cpp" />
+    <ClCompile Include="Animation\Keyframe.cpp" />
     <ClCompile Include="Animation\Skeleton.cpp" />
     <ClCompile Include="Math\src\Quaternion.cpp" />
     <ClCompile Include="stdafx.cpp" />

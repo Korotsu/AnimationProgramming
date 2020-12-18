@@ -78,6 +78,12 @@
     <ClInclude Include="Math\include\Transform.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Animation\Keyframe.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\AnimData.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -96,6 +102,12 @@
       <Filter>Source Files\Animation</Filter>
     </ClCompile>
     <ClCompile Include="Animation\Skeleton.cpp">
+      <Filter>Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\AnimData.cpp">
+      <Filter>Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\Keyframe.cpp">
       <Filter>Source Files\Animation</Filter>
     </ClCompile>
   </ItemGroup>
