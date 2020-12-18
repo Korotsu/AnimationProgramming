@@ -10,10 +10,10 @@ struct AnimData
     size_t      count       {0u};
     Keyframe*   keyframes   {nullptr};
 
-    ~AnimData();
+    ~AnimData() noexcept;
 
-    void Init(const char* animName);
-    void ApplyKeyframeTo(size_t keyframeIndex, Skeleton& skeleton) const;
+    void Init(const char* animName) noexcept;
+    void ApplyKeyframeTo(size_t keyframeIndex, Skeleton& skeleton) const noexcept;
 };
 
 #endif
