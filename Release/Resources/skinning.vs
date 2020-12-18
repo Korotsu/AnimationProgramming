@@ -34,7 +34,7 @@ void main(void)
 {
 	
 	// Calculate the position of the vertex against the world, view, and projection matrices.
-	vec4 pos = boneWeights[0] * skin.mat[int(boneIndices[0])] * vec4(inputPosition, 1.0f)
+	vec4 pos =   boneWeights[0] * skin.mat[int(boneIndices[0])] * vec4(inputPosition, 1.0f)
 			   + boneWeights[1] * skin.mat[int(boneIndices[1])] * vec4(inputPosition, 1.0f)
 			   + boneWeights[2] * skin.mat[int(boneIndices[2])] * vec4(inputPosition, 1.0f)
 			   + boneWeights[3] * skin.mat[int(boneIndices[3])] * vec4(inputPosition, 1.0f);
