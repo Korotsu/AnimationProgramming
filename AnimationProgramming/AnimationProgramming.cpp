@@ -13,11 +13,6 @@ class CSimulation final : public ISimulation
 {
 	private:
 		Skeleton mainSkeleton;
-		float tempX = 0;
-		float tempY = -100;
-		bool goUp = false;
-		bool goRight = false;
-		float speed = 0.3;
 
 		virtual void Init() final
 		{
@@ -44,7 +39,7 @@ class CSimulation final : public ISimulation
 			printf("Spine parent bone : %s\n", spineParentName);
 			printf("Anim key count : %ld\n", keyCount);
 			printf("Anim key : pos(%.2f,%.2f,%.2f) rotation quat(%.10f,%.10f,%.10f,%.10f)\n", posX, posY, posZ, quatW, quatX, quatY, quatZ);*/
-			mainSkeleton.ApplyAnimTransform("ThirdPersonWalk.anim", 1u);
+			mainSkeleton.ApplyAnimTransform("ThirdPersonWalk.anim", 5u);
 		}
 
 
