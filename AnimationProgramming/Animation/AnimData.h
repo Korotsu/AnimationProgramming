@@ -12,10 +12,8 @@ struct AnimData
 
     ~AnimData();
 
-    void Init(const char* animName) noexcept;
-
-    const BonePose& GetKeyframeBoneTransform(size_t keyframeIndex, int boneIndex) const noexcept;
-    void ApplyKeyframeTo(size_t keyframeIndex, Skeleton& skeleton) const noexcept;
+    void Init(const char* animName);
+    void ApplyKeyframeTo(size_t keyframeIndex, Skeleton& skeleton) const;
 };
 
 #endif
