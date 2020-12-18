@@ -39,7 +39,7 @@ class CSimulation final : public ISimulation
 			printf("Spine parent bone : %s\n", spineParentName);
 			printf("Anim key count : %ld\n", keyCount);
 			printf("Anim key : pos(%.2f,%.2f,%.2f) rotation quat(%.10f,%.10f,%.10f,%.10f)\n", posX, posY, posZ, quatW, quatX, quatY, quatZ);*/
-			mainSkeleton.ApplyAnimTransform("ThirdPersonWalk.anim", 5u);
+			mainSkeleton.ApplyAnimTransform("ThirdPersonWalk.anim", 3u);
 		}
 
 
@@ -57,9 +57,9 @@ class CSimulation final : public ISimulation
 			mainSkeleton.Draw();
 
 			// Gather all pose matrices
-			mainSkeleton.GatherMatrixPalette();
+			//mainSkeleton.GatherMatrixPalette();
 
-			SetSkinningPose((float*)mainSkeleton.palette, mainSkeleton.size);
+			//SetSkinningPose((float*)mainSkeleton.palette, mainSkeleton.size);
 		}
 };
 

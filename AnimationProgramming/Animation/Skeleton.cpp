@@ -48,7 +48,7 @@ void Skeleton::SetBoneTransform(int boneIndex, const Math::Vector3& trans, const
 
 	if (bone.parentIndex != -1)
 	{
-		bone.localAnimPose.trans = trans;
+		/*bone.localAnimPose.trans = trans;
 		bone.localAnimPose.rot = rot;
 
 		Math::Matrix3 tempParentMatrix3 = Math::Matrix3::identity();
@@ -77,9 +77,44 @@ void Skeleton::SetBoneTransform(int boneIndex, const Math::Vector3& trans, const
 		BonePose newGlobalPose;
 
 		newGlobalPose.trans = parentGlobalPos;
-		newGlobalPose.rot = parentGlobalRot;
+		newGlobalPose.rot = parentGlobalRot;*/
 
-		bone.globalAnimPose = newGlobalPose.toMatrix4();
+		/*Math::Matrix3 tempParentMatrix3 = Math::Matrix3::identity();
+		tempParentMatrix3.coef[0] = boneList[bone.parentIndex].globalAnimPose[0];
+		tempParentMatrix3.coef[1] = boneList[bone.parentIndex].globalAnimPose[1];
+		tempParentMatrix3.coef[2] = boneList[bone.parentIndex].globalAnimPose[2];
+		tempParentMatrix3.coef[3] = boneList[bone.parentIndex].globalAnimPose[4];
+		tempParentMatrix3.coef[4] = boneList[bone.parentIndex].globalAnimPose[5];
+		tempParentMatrix3.coef[5] = boneList[bone.parentIndex].globalAnimPose[6];
+		tempParentMatrix3.coef[6] = boneList[bone.parentIndex].globalAnimPose[8];
+		tempParentMatrix3.coef[7] = boneList[bone.parentIndex].globalAnimPose[9];
+		tempParentMatrix3.coef[8] = boneList[bone.parentIndex].globalAnimPose[10];
+
+		Math::Quaternion parentGlobalRot{ tempParentMatrix3 };*/
+
+		bone.localAnimPose.trans	= /*parentGlobalRot */ (bone.localBindPose.trans + trans);
+		bone.localAnimPose.rot		= bone.localBindPose.rot * rot;
+		//bone.localAnimPose.rot		= bone.localBindPose.rot * rot;
+
+		bone.globalAnimPose			= boneList[bone.parentIndex].globalAnimPose * bone.localAnimPose.toMatrix4();
+
+
+		//BonePose newGlobalPose;
+
+		//newGlobalPose.trans = parentGlobalPos;
+		//newGlobalPose.rot = parentGlobalRot;
+
+
+		//bone.globalAnimPose = newGlobalPose.toMatrix4();
+	}
+
+	else
+	{
+		bone.localAnimPose.trans = bone.localBindPose.trans + trans;
+		bone.localAnimPose.rot = bone.localBindPose.rot * rot;
+		//bone.localAnimPose.rot = bone.localBindPose.rot * rot;
+
+		bone.globalAnimPose = bone.localAnimPose.toMatrix4();
 	}
 
 	/*bone.localPose.trans	= trans;
