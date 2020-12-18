@@ -13,14 +13,14 @@ class CSimulation final : public ISimulation
 {
 	private:
 		Skeleton	mainSkeleton;
-		//AnimData	walkAnim; /* Uncomment to test raw walk animation */
+		AnimData	walkAnim; /* Uncomment to test raw walk animation */
 		size_t		animationProgress{0u};
 
 
 		virtual void Init() final
 		{
 			mainSkeleton.Init();
-			//walkAnim.Init("ThirdPersonWalk.anim"); /* Uncomment to test raw walk animation */
+			walkAnim.Init("ThirdPersonWalk.anim"); /* Uncomment to test raw walk animation */
 		}
 
 
@@ -31,7 +31,7 @@ class CSimulation final : public ISimulation
 			DrawLine(0, 0, 0, 0, 100, 0, 0, 1, 0);
 			DrawLine(0, 0, 0, 0, 0, 100, 0, 0, 1);
 
-			//walkAnim.ApplyKeyframeTo(animationProgress++, mainSkeleton); /* Uncomment to test raw walk animation */
+			walkAnim.ApplyKeyframeTo(animationProgress++, mainSkeleton); /* Uncomment to test raw walk animation */
 
 			mainSkeleton.Draw();
 

@@ -18,7 +18,7 @@ struct Skeleton
     Math::Matrix4*  palette {nullptr};
 
     Skeleton() = default;
-    ~Skeleton();
+    ~Skeleton() noexcept;
 
     void Init() noexcept;
 

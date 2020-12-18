@@ -6,7 +6,7 @@
 
 #include <utility>
 
-Skeleton::~Skeleton()
+Skeleton::~Skeleton() noexcept
 {
 	delete[] boneList;
 }
