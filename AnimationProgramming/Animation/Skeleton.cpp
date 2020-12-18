@@ -37,7 +37,7 @@ void Skeleton::Init() noexcept
 }
 
 
-void Skeleton::MoveBone(int boneIndex, const Math::Vec3& translation) noexcept
+void Skeleton::SetBoneTransform(int boneIndex, const Math::Vector3& trans, const Math::Quaternion& rot) noexcept
 {
 	// Invalid bone
 	if ((unsigned int)boneIndex > size)
@@ -45,8 +45,12 @@ void Skeleton::MoveBone(int boneIndex, const Math::Vec3& translation) noexcept
 
 	Bone& bone{boneList[boneIndex]};
 
-	bone.localPose.trans += translation;
-	bone.globalPose = boneList[bone.parentIndex].globalPose * bone.localPose.toMatrix4();
+	bone.localPose.trans	= trans;
+	bone.localPose.rot		= rot;
+	bone.globalPose			= bone.localPose.toMatrix4();
+
+	if (bone.parentIndex != -1)
+		bone.globalPose = boneList[bone.parentIndex].globalPose * bone.globalPose;
 }
 
 
@@ -75,9 +79,26 @@ void Skeleton::GatherMatrixPalette() noexcept
 {
 	// The last 7 bones are IK
 	const size_t end{size - 7u};
-	for (size_t i{0u}; i < size; ++i)
+	for (size_t i{0u}; i < end; ++i)
 	{
 		const Bone& bone{boneList[i]};
 		palette[i] = bone.globalPose * bone.invBindPose;
+	}
+}
+
+
+void Skeleton::ApplyAnimTransform(const char* animName, size_t keyframe) noexcept
+{
+	if (!animName || keyframe > GetAnimKeyCount(animName))
+		return;
+
+	for (size_t i{0u}; i < size; ++i)
+	{
+		Math::Quaternion rot;
+		Math::Vec3 pos;
+
+		GetAnimLocalBoneTransform(animName, i, keyframe, pos.x, pos.y, pos.z, rot[0], rot[1], rot[2], rot[3]);
+
+		SetBoneTransform(i, pos, rot);
 	}
 }
