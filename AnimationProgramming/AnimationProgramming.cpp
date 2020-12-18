@@ -5,19 +5,22 @@
 #include "Skeleton.h"
 #include "Bone.h"
 #include "Transform.h"
+#include "AnimData.h"
 
 #include <utility>
-#include <ctime>
+#include <mutex>
 
 class CSimulation final : public ISimulation
 {
 	private:
-		Skeleton mainSkeleton;
+		Skeleton	mainSkeleton;
+		AnimData	walkAnim;
+		size_t		animationProgress{0u};
 
 		virtual void Init() final
 		{
 			mainSkeleton.Init();
-			mainSkeleton.ApplyAnimTransform("ThirdPersonWalk.anim", 0u);
+			walkAnim.Init("ThirdPersonWalk.anim");
 		}
 
 
@@ -32,6 +35,8 @@ class CSimulation final : public ISimulation
 			// Z axis
 			DrawLine(0, 0, 0, 0, 0, 100, 0, 0, 1);
 
+			walkAnim.ApplyKeyframeTo(animationProgress++, mainSkeleton);
+
 			mainSkeleton.Draw();
 
 			// Gather all pose matrices
@@ -44,6 +49,9 @@ class CSimulation final : public ISimulation
 
 int main()
 {
+	std::mutex mutex;
+	const std::lock_guard<std::mutex> lock{mutex};
+
 	CSimulation simulation;
 	Run(&simulation, 1400, 800);
 
