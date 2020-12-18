@@ -4,6 +4,7 @@
 #include "Simulation.h"
 #include "Skeleton.h"
 #include "Bone.h"
+#include "Transform.h"
 
 #include <utility>
 #include <ctime>
@@ -16,7 +17,6 @@ class CSimulation final : public ISimulation
 		virtual void Init() final
 		{
 			mainSkeleton.Init();
-			mainSkeleton.MoveBone(1, {.0f, 5.f, .0f});
 
 			//mainSkeleton.boneList[10].Move({.0f, -10.f, .0f}, mainSkeleton);
 
@@ -39,6 +39,7 @@ class CSimulation final : public ISimulation
 			printf("Spine parent bone : %s\n", spineParentName);
 			printf("Anim key count : %ld\n", keyCount);
 			printf("Anim key : pos(%.2f,%.2f,%.2f) rotation quat(%.10f,%.10f,%.10f,%.10f)\n", posX, posY, posZ, quatW, quatX, quatY, quatZ);*/
+			mainSkeleton.ApplyAnimTransform("ThirdPersonWalk.anim", 1u);
 		}
 
 
@@ -55,14 +56,10 @@ class CSimulation final : public ISimulation
 
 			mainSkeleton.Draw();
 
-			// Move the fingers
-			const float cosTime{.25f * cosf(clock() * 0.01f)};
-			mainSkeleton.MoveBone(1, {.0f, .0f, cosTime});
-
 			// Gather all pose matrices
 			mainSkeleton.GatherMatrixPalette();
 
-			SetSkinningPose((float*)mainSkeleton.palette, mainSkeleton.size - 7u);
+			SetSkinningPose((float*)mainSkeleton.palette, mainSkeleton.size);
 		}
 };
 
