@@ -17,29 +17,7 @@ class CSimulation final : public ISimulation
 		virtual void Init() final
 		{
 			mainSkeleton.Init();
-
-			//mainSkeleton.boneList[10].Move({.0f, -10.f, .0f}, mainSkeleton);
-
-
-			/*const size_t boneCount		= GetSkeletonBoneCount();
-			int spine01					= GetSkeletonBoneIndex("spine_01");	// Bone parent
-			int spineParent				= GetSkeletonBoneParentIndex(spine01);
-			const char* spineParentName = GetSkeletonBoneName(spineParent);
-
-			float posX, posY, posZ, quatW, quatX, quatY, quatZ;
-			const size_t keyCount = GetAnimKeyCount("ThirdPersonWalk.anim");
-			GetAnimLocalBoneTransform("ThirdPersonWalk.anim", spineParent, keyCount / 2, posX, posY, posZ, quatW, quatX, quatY, quatZ);
-
-			for (size_t i{0u}; i < boneCount; ++i)
-			{
-				printf("Bone #%d: %s\n", i, GetSkeletonBoneName(i));
-			}
-		
-
-			printf("Spine parent bone : %s\n", spineParentName);
-			printf("Anim key count : %ld\n", keyCount);
-			printf("Anim key : pos(%.2f,%.2f,%.2f) rotation quat(%.10f,%.10f,%.10f,%.10f)\n", posX, posY, posZ, quatW, quatX, quatY, quatZ);*/
-			mainSkeleton.ApplyAnimTransform("ThirdPersonWalk.anim", 3u);
+			mainSkeleton.ApplyAnimTransform("ThirdPersonWalk.anim", 0u);
 		}
 
 
@@ -57,9 +35,9 @@ class CSimulation final : public ISimulation
 			mainSkeleton.Draw();
 
 			// Gather all pose matrices
-			//mainSkeleton.GatherMatrixPalette();
+			mainSkeleton.GatherMatrixPalette();
 
-			//SetSkinningPose((float*)mainSkeleton.palette, mainSkeleton.size);
+			SetSkinningPose((float*)mainSkeleton.palette, mainSkeleton.size);
 		}
 };
 
