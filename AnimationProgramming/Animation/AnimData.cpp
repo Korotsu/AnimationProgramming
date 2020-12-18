@@ -6,6 +6,8 @@
 #include "Quaternion.h"
 #include "Skeleton.h"
 
+#include <stdlib.h>
+
 
 AnimData::~AnimData()
 {
