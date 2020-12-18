@@ -74,7 +74,6 @@ void Skeleton::Draw() const
 	}
 }
 
-
 void Skeleton::GatherMatrixPalette() noexcept
 {
 	// The last 7 bones are IK

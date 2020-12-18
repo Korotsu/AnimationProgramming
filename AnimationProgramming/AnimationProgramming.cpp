@@ -13,6 +13,11 @@ class CSimulation final : public ISimulation
 {
 	private:
 		Skeleton mainSkeleton;
+		float tempX = 0;
+		float tempY = -100;
+		bool goUp = false;
+		bool goRight = false;
+		float speed = 0.3;
 
 		virtual void Init() final
 		{
