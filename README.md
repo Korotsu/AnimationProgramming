@@ -12,6 +12,9 @@ Finally, you can :
 4. Wait for the generation to be over
 5. Launch `Release/AnimationProgramming.exe`
 
+`Release/AnimationProgramming.exe` will sometimes close shortly after being launched. The model may also not appear sometimes.
+The same goes with the Local Windows Debugger in Visual Studio. Some errors may be displayed in the console, or in the editor,
+but these problems comes from the underlying engine. Check the screenshot/video folder (`Docs/Screenshots`) to see working examples.
 
 ## What is and is not done
 From the subject:
