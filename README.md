@@ -28,6 +28,8 @@ but these problems comes from the underlying engine. Check the screenshot/video 
 The aformentioned finished versions can be checkout out with `git checkout <tag>`.
 The final version is tagged `GOLD`.
 
+![raw_walk_animation.gif](Docs/Screenshots/raw_walk_animation.gif)
+
 ## Architecture
 
 - `AnimationProgramming/` contains sources and Visual Studio's solution explorer files
