@@ -1,5 +1,5 @@
 # Animation programming
-by Sami AMARA and William NARDONNE
+by Sami AMARA and William NARDONE
 
 
 ## Running the project
@@ -17,14 +17,13 @@ The same goes with the Local Windows Debugger in Visual Studio. Some errors may 
 but these problems comes from the underlying engine. Check the screenshot/video folder (`Docs/Screenshots`) to see working examples.
 
 ## What is and is not done
-From the subject:
-- [X] Dessiner le squelette avec des lignes en utilisant DrawLine (un peu devant le perso afin de voir les lignes) (tag `skeleton_drawing`)
-- [X] Déplacer un bone manuellement (tag `move_bone`)
-- [X] Coder le hardware skinning pour que les vertices suivent le bones (envoyer les transformations des bones via la fonction SetSkinningPose dans Engine.h) (tag `hardware_skinning`)
-- [X] Afficher la première keyframe de l’animation walk sur le personnage (tag `first_keyframe_pose`)
-- [X] Faites en sorte que le perso joue l’animation de walk en passant en dur de keyframe à keyframe (tag `raw_animation`)
-- [ ] Interpoler les keyframes pour que l’animation soit smooth
-- [ ] Blender les animations de walk et run, en contrôlant les vitesses de play des 2 animspour qu’elles soient toujours synchronisées (qu’elles aient le même temps normalisé)
+- [X] Draw the skeleton with lines using DrawLine (a little in front of the character in order to see the lines) (tag `skeleton_drawing`)
+- [X] Move a bone manually (`move_bone` tag)
+- [X] Code the hardware skinning so that the vertices follow the bones (send the transformations of the bones with the SetSkinningPose function in Engine.h) (tag `hardware_skinning`)
+- [X] Display the first keyframe of the walk animation on the character (tag `first_keyframe_pose`)
+- [X] Make the character play the running animation by hard switching from keyframe to keyframe (`raw_animation` tag)
+- [] Interpolate the keyframes so that the animation is smooth
+- [] Blend the walking and running animations, controlling the game speeds of the 2 animates so that they are always synchronized (that they have the same normalized time)
 
 The aformentioned finished versions can be checkout out with `git checkout <tag>`.
 The final version is tagged `GOLD`.
@@ -32,8 +31,8 @@ The final version is tagged `GOLD`.
 ## Architecture
 
 - `AnimationProgramming/` contains sources and Visual Studio's solution explorer files
-    - `AnimationProgramming/Math/` has all the sources for the math used throughout this project
-    - `AnimationProgramming/Animation/` has all animation related sources added to the original project
+- `AnimationProgramming/Math/` has all the sources for the math used throughout this project
+- `AnimationProgramming/Animation/` has all animation related sources added to the original project
 - `Docs/` contains screenshots, videos, and the architecture illustrated
 - `Release/` holds the binary contents and data used in the project
 
